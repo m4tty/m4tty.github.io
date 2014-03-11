@@ -1,0 +1,24 @@
+# Dependencies
+markdown:         redcarpet
+pygments:         true
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            "Matt Self's Blog"
+tagline:          "Matt Self's Blog"
+description:      "Matt Self's Blog"
+url:              http://m4tty.github.io
+
+author:
+  name:           'Matt Self'
+  url:            https://twitter.com/_m4tty
+
+paginate:         5
+
+# Custom vars
+version:          1.0.0
+
+github:
+  repo:           https://github.com/m4tty/m4tty.github.io
