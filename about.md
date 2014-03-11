@@ -4,13 +4,11 @@ title: About
 ---
 
 <p class="message">
-  About Matt Self
+  Software Engineer and Architect. Builder. Maker. Learner.
 </p>
 
-Blah blah etc.
-It's made by [@_m4tty](https://twitter.com/_m4tty).
+* [Twitter](https://twitter.com/_m4tty)
+* [GitHub](https://github.com/m4tty)
 
+[Resume](../resume)
 
-## Resume
-
-Blah blah
