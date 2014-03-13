@@ -1,8 +1,14 @@
 ---
 layout: post
-title: Example content
+title: Favorite Software Engineering / Architecture Books
 ---
 
+
+
+
+
+
+Design of Design
 
 <div class="message">
   This is an example blog post.

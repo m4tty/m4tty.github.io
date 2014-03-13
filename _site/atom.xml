@@ -4,7 +4,7 @@
  <title>Matt Self's Blog</title>
  <link href="http://m4tty.github.io/atom.xml" rel="self"/>
  <link href="http://m4tty.github.io/"/>
- <updated>2014-03-11T17:05:39-06:00</updated>
+ <updated>2014-03-12T22:57:27-06:00</updated>
  <id>http://m4tty.github.io</id>
  <author>
    <name>Matt Self</name>
@@ -13,11 +13,13 @@
 
  
  <entry>
-   <title>Example content</title>
+   <title>Favorite Software Engineering / Architecture Books</title>
    <link href="http://m4tty.github.io/2014/01/01/example-content/"/>
    <updated>2014-01-01T00:00:00-07:00</updated>
    <id>http://m4tty.github.io/2014/01/01/example-content</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
+   <content type="html">&lt;p&gt;Design of Design&lt;/p&gt;
+
+&lt;div class=&quot;message&quot;&gt;
   This is an example blog post.
 &lt;/div&gt;
 
