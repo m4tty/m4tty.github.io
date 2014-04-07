@@ -10,7 +10,7 @@
 
   <title>
     
-      Matt Self's Blog &middot; Matt Self's Blog
+      Measure All The Things (Day 2) &middot; Matt Self's Blog
     
   </title>
 
@@ -40,7 +40,7 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item active" href="/">Home</a>
+    <a class="sidebar-nav-item" href="/">Home</a>
 
     
 
@@ -93,18 +93,10 @@
       </div>
 
       <div class="container content">
-        <div class="posts">
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/04/07/golang-series-2/">
-        Measure All The Things (Day 2)
-      </a>
-    </h1>
-
-    <span class="post-date">07 Apr 2014</span>
-
-    <h1>Day 2 - Learning by doing</h1>
+        <div class="post">
+  <h1 class="post-title">Measure All The Things (Day 2)</h1>
+  <span class="post-date">07 Apr 2014</span>
+  <h1>Day 2 - Learning by doing</h1>
 
 <h2>Why is sending, storing, and using time-series data awesome?  Its all about feedback.</h2>
 
@@ -158,130 +150,32 @@
 
 <p>Next, we&#39;ll do a little bit of architecture/design.</p>
 
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/04/06/golang-series-1/">
-        Learning Go by Building a Time-Series System (Intro - Day 1)
-      </a>
-    </h1>
-
-    <span class="post-date">06 Apr 2014</span>
-
-    <h1>Day 1 - Learning by doing</h1>
-
-<h2>Let’s build something in Go together</h2>
-
-<p>I’ve been programming Go for a little while now, and have been plugging along, but I haven’t built anything truly useful or challenging.  So, in an effort to <a href="http://en.wikipedia.org/wiki/Experiential_learning">“learn by doing”</a>, I’ll be attempting to build something non-trivial and along the way I’ll share all of the gory details from soup to nuts.</p>
-
-<p>Instead of building yet another blog engine or a to-do list application I’ve decided to build a time-series data store, services, and graphing engine.  Much of what we build will be similar to functionality in -the oh so awesome- <a href="http://graphite.wikidot.com/">Graphite</a> (and <a href="https://github.com/etsy/statsd/">statsd</a>).  While I don’t think we’ll build all of the parts required, we will attempt to write the software ourselves in places where learning opportunity and low difficulty intersect.  We’ll leverage and collaborate with open source software when the task is too great or doesn’t contribute to learning Go.</p>
-
-<p>The high level plan will look like this: </p>
-
-<ul>
-<li>We&#39;ll start with some context (i.e. why measure all the things) about why a time-series system is cool to build.</li>
-<li>Then we&#39;ll do some design and architecture.</li>
-<li>Set up our programming environment and level set on Go.</li>
-<li>Start coding...</li>
-</ul>
-
-<div class="message">
-Along the way I'll take a number of tangents where it is something I think is worth learning.  When I do so, I'll try to designate those sections as a side note.
 </div>
 
-<h3>The High Level Functional Requirements</h3>
-
-<p><strong>Store numeric time series data</strong></p>
-
-<ul>
-<li>UDP for high frequency, finely grained data points, and clients that need to fire and forget</li>
-<li>HTTP for aggregated data</li>
-<li>Low storage footprint</li>
-<li>High precision for more recent data, lower precision as data ages</li>
-</ul>
-
-<p><strong>Retrieve numeric time series data</strong></p>
-
-<ul>
-<li>HTTP</li>
-<li>Server side data functions support</li>
-</ul>
-
-<p><strong>Graphs</strong></p>
-
-<ul>
-<li>Simple, good looking, plotted graphs</li>
-<li>Doesn’t need to be interactive</li>
-</ul>
-
-<h3>Additionally, we want:</h3>
-
-<ul>
-<li>Testable software</li>
-<li>Decent test coverage</li>
-<li>Documentation</li>
-<li>Fun (if it isn’t fun to build it, we won’t)</li>
-<li>Learning (we’ll take some detours along the way when appropriate)</li>
-<li>A design/architecture that supports change in key areas</li>
-</ul>
-
-<h2>Following along at home</h2>
-
-<p>I’ll be using git / github to manage the changes over time.  I’ll be providing commit ids along the way for the folks that would like to follow along.</p>
-
-<h2>Summary</h2>
-
-<p>I&#39;m going to build a time-series system and while I do so I will write down all of the ugly details along the way.  You can follow along and we&#39;ll learn something together.</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2014/04/01/favorite-books/">
-        Favorite Software Engineering / Architecture / Tech Books
-      </a>
-    </h1>
-
-    <span class="post-date">01 Apr 2014</span>
-
-    <ul>
-<li>Domain Driven Designs by Eric Evans</li>
-<li>Object-Oriented Analysis and Design with Applications by Grady Booch</li>
-<li>Gödel, Escher, Bach by Douglas Hofstadter</li>
-<li>Design of Design by Fred Brooks</li>
-<li>The Pragmatic Programmer</li>
-<li>Coders at Work by Peter Seibel</li>
-<li>JavaScript - The Good Parts</li>
-<li>Scaling Lean and Agile by Craig Larman</li>
-<li>Applying UML and Patterns by Craig Larman</li>
-<li>Agile Software Development: Principles, Patterns, and Practices by Robert C. Martin</li>
-<li>Code Complete by Steve McConnel</li>
-<li>Object Design by Rebecca Wirfs-Brock and Alan McKean</li>
-<li>Domain Driven Design by Eric Evans</li>
-<li>High Performance Browser Networking by Ilya Grigorik</li>
-<li>Thinking in Systems by Donella H. Meadows</li>
-<li>Made to Stick by Chip and Dan Heath</li>
-<li>Are Your Lights On? by Gause and Weinberg</li>
-<li>CODE by Charles Petzold</li>
-<li>Hackers and Painters: Big Ideas from the Computer Age</li>
-<li>Refactoring by Martin Fowler</li>
-<li>The Myths of Innovation by Scott Berkun</li>
-</ul>
-
-  </div>
-  
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2014/04/06/golang-series-1/">
+            Learning Go by Building a Time-Series System (Intro - Day 1)
+            <small>06 Apr 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2014/04/01/favorite-books/">
+            Favorite Software Engineering / Architecture / Tech Books
+            <small>01 Apr 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
-
-<div class="pagination">
-  
-    <span class="pagination-item older">Older</span>
-  
-  
-    <span class="pagination-item newer">Newer</span>
-  
-</div>
-
 
       </div>
     </div>

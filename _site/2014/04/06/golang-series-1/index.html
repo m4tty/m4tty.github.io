@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Learning Go by Building a Time-Series System (Intro - Day 1) &middot; Matt Self's Blog
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Matt Self's Blog</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+          <a class="sidebar-nav-item" href="/resume/">Resume</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2014. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Matt Self's Blog</a>
+            <small>Matt Self's Blog</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Learning Go by Building a Time-Series System (Intro - Day 1)</h1>
+  <span class="post-date">06 Apr 2014</span>
+  <h1>Day 1 - Learning by doing</h1>
+
+<h2>Let’s build something in Go together</h2>
+
+<p>I’ve been programming Go for a little while now, and have been plugging along, but I haven’t built anything truly useful or challenging.  So, in an effort to <a href="http://en.wikipedia.org/wiki/Experiential_learning">“learn by doing”</a>, I’ll be attempting to build something non-trivial and along the way I’ll share all of the gory details from soup to nuts.</p>
+
+<p>Instead of building yet another blog engine or a to-do list application I’ve decided to build a time-series data store, services, and graphing engine.  Much of what we build will be similar to functionality in -the oh so awesome- <a href="http://graphite.wikidot.com/">Graphite</a> (and <a href="https://github.com/etsy/statsd/">statsd</a>).  While I don’t think we’ll build all of the parts required, we will attempt to write the software ourselves in places where learning opportunity and low difficulty intersect.  We’ll leverage and collaborate with open source software when the task is too great or doesn’t contribute to learning Go.</p>
+
+<p>The high level plan will look like this: </p>
+
+<ul>
+<li>We&#39;ll start with some context (i.e. why measure all the things) about why a time-series system is cool to build.</li>
+<li>Then we&#39;ll do some design and architecture.</li>
+<li>Set up our programming environment and level set on Go.</li>
+<li>Start coding...</li>
+</ul>
+
+<div class="message">
+Along the way I'll take a number of tangents where it is something I think is worth learning.  When I do so, I'll try to designate those sections as a side note.
+</div>
+
+<h3>The High Level Functional Requirements</h3>
+
+<p><strong>Store numeric time series data</strong></p>
+
+<ul>
+<li>UDP for high frequency, finely grained data points, and clients that need to fire and forget</li>
+<li>HTTP for aggregated data</li>
+<li>Low storage footprint</li>
+<li>High precision for more recent data, lower precision as data ages</li>
+</ul>
+
+<p><strong>Retrieve numeric time series data</strong></p>
+
+<ul>
+<li>HTTP</li>
+<li>Server side data functions support</li>
+</ul>
+
+<p><strong>Graphs</strong></p>
+
+<ul>
+<li>Simple, good looking, plotted graphs</li>
+<li>Doesn’t need to be interactive</li>
+</ul>
+
+<h3>Additionally, we want:</h3>
+
+<ul>
+<li>Testable software</li>
+<li>Decent test coverage</li>
+<li>Documentation</li>
+<li>Fun (if it isn’t fun to build it, we won’t)</li>
+<li>Learning (we’ll take some detours along the way when appropriate)</li>
+<li>A design/architecture that supports change in key areas</li>
+</ul>
+
+<h2>Following along at home</h2>
+
+<p>I’ll be using git / github to manage the changes over time.  I’ll be providing commit ids along the way for the folks that would like to follow along.</p>
+
+<h2>Summary</h2>
+
+<p>I&#39;m going to build a time-series system and while I do so I will write down all of the ugly details along the way.  You can follow along and we&#39;ll learn something together.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2014/04/07/golang-series-2/">
+            Measure All The Things (Day 2)
+            <small>07 Apr 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2014/04/01/favorite-books/">
+            Favorite Software Engineering / Architecture / Tech Books
+            <small>01 Apr 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+  </body>
+</html>

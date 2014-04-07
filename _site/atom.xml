@@ -4,7 +4,7 @@
  <title>Matt Self's Blog</title>
  <link href="http://m4tty.github.io/atom.xml" rel="self"/>
  <link href="http://m4tty.github.io/"/>
- <updated>2014-03-12T23:13:42-06:00</updated>
+ <updated>2014-04-07T17:12:05-06:00</updated>
  <id>http://m4tty.github.io</id>
  <author>
    <name>Matt Self</name>
@@ -13,131 +13,166 @@
 
  
  <entry>
-   <title>Favorite Software Engineering / Architecture Books</title>
-   <link href="http://m4tty.github.io/2014/01/01/example-content/"/>
-   <updated>2014-01-01T00:00:00-07:00</updated>
-   <id>http://m4tty.github.io/2014/01/01/example-content</id>
-   <content type="html">&lt;p&gt;Design of Design&lt;/p&gt;
+   <title>Measure All The Things (Day 2)</title>
+   <link href="http://m4tty.github.io/2014/04/07/golang-series-2/"/>
+   <updated>2014-04-07T00:00:00-06:00</updated>
+   <id>http://m4tty.github.io/2014/04/07/golang-series-2</id>
+   <content type="html">&lt;h1&gt;Day 2 - Learning by doing&lt;/h1&gt;
+
+&lt;h2&gt;Why is sending, storing, and using time-series data awesome?  Its all about feedback.&lt;/h2&gt;
+
+&lt;p&gt;Before we start working on the time-series system, we&amp;#39;ll go on a slight tangent to discuss why capturing metrics about your applications is important.&lt;/p&gt;
+
+&lt;p&gt;The speed at which we can receive feedback is a direct indicator of how quickly we can move through the software development cycle/workflow.  The shorter the feedback loop the quicker we&amp;#39;ll be able to react, and the quicker (and more) we&amp;#39;ll be able to push change and innovate.  We want to transform our organizations into fast moving and high performing environments... and in order to do so we must create an software factory that shortens the cycles to push change and receive feedback in order to gain a competitive advantage.  Without short feedback loops we are rate limiting our ability to change.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What should be measured?&lt;/strong&gt;  Everything.&lt;/p&gt;
+
+&lt;h3&gt;Application, System, Network measurements.&lt;/h3&gt;
+
+&lt;h4&gt;Application Metrics&lt;/h4&gt;
+
+&lt;p&gt;Any function that provides value or insight into an application should be timed or counted and sent.&lt;/p&gt;
+
+&lt;h4&gt;System&lt;/h4&gt;
+
+&lt;p&gt;Understanding the health of your servers is of paramount importance.  The standard set of information to capture is Memory, CPU, and disk.  See &lt;a href=&quot;http://collectd.org/&quot;&gt;CollectD&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Network&lt;/h4&gt;
+
+&lt;p&gt;Having visibility into the health of the network is also important when troubleshooting.  To begin with, using tools that live with the System/Machine to get a view into the network health (as the machine perceives its own network interface) is a good start.  Ultimately, using correlation identifiers to act as tracer &amp;quot;bullets&amp;quot; that can capture points in time as requests move throughout our networked systems.  See &lt;a href=&quot;http://twitter.github.io/zipkin/&quot;&gt;Zipkin&lt;/a&gt;, &lt;a href=&quot;http://static.googleusercontent.com/media/research.google.com/en/us/pubs/archive/36356.pdf&quot;&gt;Dapper&lt;/a&gt;, &lt;a href=&quot;http://collectd.org/&quot;&gt;CollectD&lt;/a&gt;, &lt;a href=&quot;http://obfuscurity.com/2012/07/El-Cheapo-Network-Graph&quot;&gt;Ping Script&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Error counts&lt;/h4&gt;
+
+&lt;p&gt;Another valuable data point is your Error logs.  Error logs can be parsed and counted, making it possible to monitor for fluctuations in Error rates and trend on specific Error strings.  You can send these to Graphite, but this is also a great place to use &lt;a href=&quot;http://logstash.net/&quot;&gt;Logstash&lt;/a&gt;, &lt;a href=&quot;http://www.elasticsearch.org/&quot;&gt;Elastic Search&lt;/a&gt;, and &lt;a href=&quot;http://www.elasticsearch.org/overview/kibana/&quot;&gt;Kibana&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Capture Change Events (track every release)&lt;/h4&gt;
+
+&lt;p&gt;Changes to our application code are opportunities for the introduction of issues.  By tracking change events (deploys) we can correlate metric fluctuations to causation from the change event.  Application Metrics + Change Events are keys to providing confidence and enabling change (i.e Continuous Deployments).&lt;/p&gt;
+
+&lt;h4&gt;Amplify the feedback&lt;/h4&gt;
+
+&lt;p&gt;Display a wallboard for goodness sakes.  Use a large display that shows always relevant, easy to understand, graphs.  Atlassian explains it well &lt;a href=&quot;http://www.slideshare.net/GoAtlassian/ltds3-information-radiators&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://blogs.atlassian.com/2011/10/using_an_appletv_as_a_build_monitor/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/images/kCeDD.jpg&quot; alt=&quot;Wallboard&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;Monitoring (Application, System, Network metrics)&lt;/h3&gt;
+
+&lt;h4&gt;Use the Humans:&lt;/h4&gt;
+
+&lt;p&gt;Amplify the feedback (graphs) by using a wallboard.  Humans watch the graphs for fluctuations during deploys and are happy.&lt;/p&gt;
+
+&lt;h4&gt;Use the Machines:&lt;/h4&gt;
+
+&lt;p&gt;In order to use the machines for monitoring we must talk about normal trends.  What is abnormal?  For monitoring, it is important to look at normal and abnormal. Most monitoring is done with static thresholds for alarms and alerts, but in our applications thresholds change over time and at different times of the day.  Our systems might see a huge variance in response, but we would likely receive no alerts if we have set a high static warning threshold.  Large spikes during business peaks can be normal and the troughs can be just as extreme during lows, so thresholds need to be dynamic.  One way we can better monitor and alert is using something like the Holt-Winters exponential smoothing algorithm for predicting confidences (upper and lower bounds) and plotting aberrations.&lt;/p&gt;
+
+&lt;h3&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Whether you use Graphite, what we -eventually- build, or something else entirely, you should definitely be capturing and monitoring your application and system metric data.  Now that you know why it is important, I hope you&amp;#39;ll be -at least a bit more- excited to build a time-series system.&lt;/p&gt;
+
+&lt;p&gt;Next, we&amp;#39;ll do a little bit of architecture/design.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Learning Go by Building a Time-Series System (Intro - Day 1)</title>
+   <link href="http://m4tty.github.io/2014/04/06/golang-series-1/"/>
+   <updated>2014-04-06T00:00:00-06:00</updated>
+   <id>http://m4tty.github.io/2014/04/06/golang-series-1</id>
+   <content type="html">&lt;h1&gt;Day 1 - Learning by doing&lt;/h1&gt;
+
+&lt;h2&gt;Let’s build something in Go together&lt;/h2&gt;
+
+&lt;p&gt;I’ve been programming Go for a little while now, and have been plugging along, but I haven’t built anything truly useful or challenging.  So, in an effort to &lt;a href=&quot;http://en.wikipedia.org/wiki/Experiential_learning&quot;&gt;“learn by doing”&lt;/a&gt;, I’ll be attempting to build something non-trivial and along the way I’ll share all of the gory details from soup to nuts.&lt;/p&gt;
+
+&lt;p&gt;Instead of building yet another blog engine or a to-do list application I’ve decided to build a time-series data store, services, and graphing engine.  Much of what we build will be similar to functionality in -the oh so awesome- &lt;a href=&quot;http://graphite.wikidot.com/&quot;&gt;Graphite&lt;/a&gt; (and &lt;a href=&quot;https://github.com/etsy/statsd/&quot;&gt;statsd&lt;/a&gt;).  While I don’t think we’ll build all of the parts required, we will attempt to write the software ourselves in places where learning opportunity and low difficulty intersect.  We’ll leverage and collaborate with open source software when the task is too great or doesn’t contribute to learning Go.&lt;/p&gt;
+
+&lt;p&gt;The high level plan will look like this: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We&amp;#39;ll start with some context (i.e. why measure all the things) about why a time-series system is cool to build.&lt;/li&gt;
+&lt;li&gt;Then we&amp;#39;ll do some design and architecture.&lt;/li&gt;
+&lt;li&gt;Set up our programming environment and level set on Go.&lt;/li&gt;
+&lt;li&gt;Start coding...&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;message&quot;&gt;
-  This is an example blog post.
+Along the way I'll take a number of tangents where it is something I think is worth learning.  When I do so, I'll try to designate those sections as a side note.
 &lt;/div&gt;
 
-&lt;p&gt;Cum sociis natoque penatibus et magnis &lt;a href=&quot;#&quot;&gt;dis parturient montes&lt;/a&gt;, nascetur ridiculus mus. &lt;em&gt;Aenean eu leo quam.&lt;/em&gt; Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.&lt;/p&gt;
+&lt;h3&gt;The High Level Functional Requirements&lt;/h3&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Etiam porta &lt;strong&gt;sem malesuada magna&lt;/strong&gt; mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.&lt;/p&gt;
-
-&lt;h2&gt;Inline HTML elements&lt;/h2&gt;
-
-&lt;p&gt;HTML defines a long list of available inline tags, a complete list of which can be found on the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element&quot;&gt;Mozilla Developer Network&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Store numeric time series data&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;To bold text&lt;/strong&gt;, use &lt;code&gt;&amp;lt;strong&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;To italicize text&lt;/em&gt;, use &lt;code&gt;&amp;lt;em&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Abbreviations, like &lt;abbr title=&quot;HyperText Markup Langage&quot;&gt;HTML&lt;/abbr&gt; should use &lt;code&gt;&amp;lt;abbr&amp;gt;&lt;/code&gt;, with an optional &lt;code&gt;title&lt;/code&gt; attribute for the full phrase.&lt;/li&gt;
-&lt;li&gt;Citations, like &lt;cite&gt;&amp;mdash; Mark otto&lt;/cite&gt;, should use &lt;code&gt;&amp;lt;cite&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;Deleted&lt;/del&gt; text should use &lt;code&gt;&amp;lt;del&amp;gt;&lt;/code&gt; and &lt;ins&gt;inserted&lt;/ins&gt; text should use &lt;code&gt;&amp;lt;ins&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Superscript &lt;sup&gt;text&lt;/sup&gt; uses &lt;code&gt;&amp;lt;sup&amp;gt;&lt;/code&gt; and subscript &lt;sub&gt;text&lt;/sub&gt; uses &lt;code&gt;&amp;lt;sub&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;UDP for high frequency, finely grained data points, and clients that need to fire and forget&lt;/li&gt;
+&lt;li&gt;HTTP for aggregated data&lt;/li&gt;
+&lt;li&gt;Low storage footprint&lt;/li&gt;
+&lt;li&gt;High precision for more recent data, lower precision as data ages&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Most of these elements are styled by browsers with few modifications on our part.&lt;/p&gt;
-
-&lt;h2&gt;Heading&lt;/h2&gt;
-
-&lt;p&gt;Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.&lt;/p&gt;
-
-&lt;h3&gt;Code&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis &lt;code&gt;code element&lt;/code&gt; montes, nascetur ridiculus mus.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example can be run directly in your JavaScript console&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Create a function that takes two arguments and returns the sum of those arguments&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;return a + b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Call the function&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;adder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// &amp;gt; 8&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.&lt;/p&gt;
-
-&lt;h3&gt;Lists&lt;/h3&gt;
-
-&lt;p&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Retrieve numeric time series data&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Praesent commodo cursus magna, vel scelerisque nisl consectetur et.&lt;/li&gt;
-&lt;li&gt;Donec id elit non mi porta gravida at eget metus.&lt;/li&gt;
-&lt;li&gt;Nulla vitae elit libero, a pharetra augue.&lt;/li&gt;
+&lt;li&gt;HTTP&lt;/li&gt;
+&lt;li&gt;Server side data functions support&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Graphs&lt;/strong&gt;&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Vestibulum id ligula porta felis euismod semper.&lt;/li&gt;
-&lt;li&gt;Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.&lt;/li&gt;
-&lt;li&gt;Maecenas sed diam eget risus varius blandit sit amet non magna.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Simple, good looking, plotted graphs&lt;/li&gt;
+&lt;li&gt;Doesn’t need to be interactive&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.&lt;/p&gt;
+&lt;h3&gt;Additionally, we want:&lt;/h3&gt;
 
-&lt;dl&gt;
-  &lt;dt&gt;HyperText Markup Language (HTML)&lt;/dt&gt;
-  &lt;dd&gt;The language used to describe and define the content of a Web page&lt;/dd&gt;
+&lt;ul&gt;
+&lt;li&gt;Testable software&lt;/li&gt;
+&lt;li&gt;Decent test coverage&lt;/li&gt;
+&lt;li&gt;Documentation&lt;/li&gt;
+&lt;li&gt;Fun (if it isn’t fun to build it, we won’t)&lt;/li&gt;
+&lt;li&gt;Learning (we’ll take some detours along the way when appropriate)&lt;/li&gt;
+&lt;li&gt;A design/architecture that supports change in key areas&lt;/li&gt;
+&lt;/ul&gt;
 
-  &lt;dt&gt;Cascading Style Sheets (CSS)&lt;/dt&gt;
-  &lt;dd&gt;Used to describe the appearance of Web content&lt;/dd&gt;
+&lt;h2&gt;Following along at home&lt;/h2&gt;
 
-  &lt;dt&gt;JavaScript (JS)&lt;/dt&gt;
-  &lt;dd&gt;The programming language used to build advanced Web sites and applications&lt;/dd&gt;
-&lt;/dl&gt;
+&lt;p&gt;I’ll be using git / github to manage the changes over time.  I’ll be providing commit ids along the way for the folks that would like to follow along.&lt;/p&gt;
 
-&lt;p&gt;Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
+&lt;h2&gt;Summary&lt;/h2&gt;
 
-&lt;h3&gt;Tables&lt;/h3&gt;
-
-&lt;p&gt;Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Upvotes&lt;/th&gt;
-      &lt;th&gt;Downvotes&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Totals&lt;/td&gt;
-      &lt;td&gt;21&lt;/td&gt;
-      &lt;td&gt;23&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Alice&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Bob&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Charlie&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.&lt;/p&gt;
+&lt;p&gt;I&amp;#39;m going to build a time-series system and while I do so I will write down all of the ugly details along the way.  You can follow along and we&amp;#39;ll learn something together.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Favorite Software Engineering / Architecture / Tech Books</title>
+   <link href="http://m4tty.github.io/2014/04/01/favorite-books/"/>
+   <updated>2014-04-01T00:00:00-06:00</updated>
+   <id>http://m4tty.github.io/2014/04/01/favorite-books</id>
+   <content type="html">&lt;ul&gt;
+&lt;li&gt;Domain Driven Designs by Eric Evans&lt;/li&gt;
+&lt;li&gt;Object-Oriented Analysis and Design with Applications by Grady Booch&lt;/li&gt;
+&lt;li&gt;Gödel, Escher, Bach by Douglas Hofstadter&lt;/li&gt;
+&lt;li&gt;Design of Design by Fred Brooks&lt;/li&gt;
+&lt;li&gt;The Pragmatic Programmer&lt;/li&gt;
+&lt;li&gt;Coders at Work by Peter Seibel&lt;/li&gt;
+&lt;li&gt;JavaScript - The Good Parts&lt;/li&gt;
+&lt;li&gt;Scaling Lean and Agile by Craig Larman&lt;/li&gt;
+&lt;li&gt;Applying UML and Patterns by Craig Larman&lt;/li&gt;
+&lt;li&gt;Agile Software Development: Principles, Patterns, and Practices by Robert C. Martin&lt;/li&gt;
+&lt;li&gt;Code Complete by Steve McConnel&lt;/li&gt;
+&lt;li&gt;Object Design by Rebecca Wirfs-Brock and Alan McKean&lt;/li&gt;
+&lt;li&gt;Domain Driven Design by Eric Evans&lt;/li&gt;
+&lt;li&gt;High Performance Browser Networking by Ilya Grigorik&lt;/li&gt;
+&lt;li&gt;Thinking in Systems by Donella H. Meadows&lt;/li&gt;
+&lt;li&gt;Made to Stick by Chip and Dan Heath&lt;/li&gt;
+&lt;li&gt;Are Your Lights On? by Gause and Weinberg&lt;/li&gt;
+&lt;li&gt;CODE by Charles Petzold&lt;/li&gt;
+&lt;li&gt;Hackers and Painters: Big Ideas from the Computer Age&lt;/li&gt;
+&lt;li&gt;Refactoring by Martin Fowler&lt;/li&gt;
+&lt;li&gt;The Myths of Innovation by Scott Berkun&lt;/li&gt;
+&lt;/ul&gt;
 </content>
  </entry>
  
