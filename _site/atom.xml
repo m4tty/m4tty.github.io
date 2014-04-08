@@ -4,7 +4,7 @@
  <title>Matt Self's Blog</title>
  <link href="http://m4tty.github.io/atom.xml" rel="self"/>
  <link href="http://m4tty.github.io/"/>
- <updated>2014-04-07T17:12:05-06:00</updated>
+ <updated>2014-04-07T20:39:30-06:00</updated>
  <id>http://m4tty.github.io</id>
  <author>
    <name>Matt Self</name>
@@ -70,6 +70,78 @@
 &lt;p&gt;Whether you use Graphite, what we -eventually- build, or something else entirely, you should definitely be capturing and monitoring your application and system metric data.  Now that you know why it is important, I hope you&amp;#39;ll be -at least a bit more- excited to build a time-series system.&lt;/p&gt;
 
 &lt;p&gt;Next, we&amp;#39;ll do a little bit of architecture/design.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Learning Go by Building a Time-Series System (Intro - Day 1)</title>
+   <link href="http://m4tty.github.io/2014/04/07/golang-series-1/"/>
+   <updated>2014-04-07T00:00:00-06:00</updated>
+   <id>http://m4tty.github.io/2014/04/07/golang-series-1</id>
+   <content type="html">&lt;h1&gt;Day 1 - Learning by doing&lt;/h1&gt;
+
+&lt;h2&gt;Let’s build something in Go together&lt;/h2&gt;
+
+&lt;p&gt;I’ve been programming Go for a little while now, and have been plugging along, but I haven’t built anything truly useful or challenging.  So, in an effort to &lt;a href=&quot;http://en.wikipedia.org/wiki/Experiential_learning&quot;&gt;“learn by doing”&lt;/a&gt;, I’ll be attempting to build something non-trivial and along the way I’ll share all of the gory details from soup to nuts.&lt;/p&gt;
+
+&lt;p&gt;Instead of building yet another blog engine or a to-do list application I’ve decided to build a time-series data store, services, and graphing engine.  Much of what we build will be similar to functionality in -the oh so awesome- &lt;a href=&quot;http://graphite.wikidot.com/&quot;&gt;Graphite&lt;/a&gt; (and &lt;a href=&quot;https://github.com/etsy/statsd/&quot;&gt;statsd&lt;/a&gt;).  While I don’t think we’ll build &lt;em&gt;all&lt;/em&gt; of the parts required, we will attempt to write the software ourselves in places where learning opportunity and low difficulty intersect.  We’ll leverage and collaborate with open source software when the task is too great or doesn’t contribute to learning Go.&lt;/p&gt;
+
+&lt;p&gt;The high level plan will look like this: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We&amp;#39;ll start with some context (i.e. why measure all the things) about why a time-series system is cool to build.&lt;/li&gt;
+&lt;li&gt;Then we&amp;#39;ll do some design and architecture.&lt;/li&gt;
+&lt;li&gt;Set up our programming environment and level set on Go.&lt;/li&gt;
+&lt;li&gt;Start coding...&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;message&quot;&gt;
+Along the way I'll take a number of tangents, where it is something I think is worth learning or explaining.  When I do so, I'll try to designate those sections differently.
+&lt;/div&gt;
+
+&lt;h3&gt;The High Level Functional Requirements&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Store numeric time series data&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;UDP for high frequency, finely grained data points, and clients that need to fire and forget&lt;/li&gt;
+&lt;li&gt;HTTP for aggregated data&lt;/li&gt;
+&lt;li&gt;Low storage footprint&lt;/li&gt;
+&lt;li&gt;High precision for more recent data, lower precision as data ages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Retrieve numeric time series data&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HTTP&lt;/li&gt;
+&lt;li&gt;Server side data functions support&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Graphs&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Simple, good looking, plotted graphs&lt;/li&gt;
+&lt;li&gt;Doesn’t need to be interactive&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Additionally, we want:&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Testable software&lt;/li&gt;
+&lt;li&gt;Decent test coverage&lt;/li&gt;
+&lt;li&gt;Documentation&lt;/li&gt;
+&lt;li&gt;Fun (if it isn’t fun to build it, we won’t)&lt;/li&gt;
+&lt;li&gt;Learning (we’ll take some detours along the way when appropriate)&lt;/li&gt;
+&lt;li&gt;A design/architecture that supports change in key areas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Following along at home&lt;/h2&gt;
+
+&lt;p&gt;I’ll be using git / github to manage the changes over time.  I’ll be providing commit ids along the way for the folks that would like to follow along.&lt;/p&gt;
+
+&lt;h2&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;m going to build a time-series system and while I do so I will write down all of the ugly details along the way.  You can follow along and we&amp;#39;ll learn something together.&lt;/p&gt;
 </content>
  </entry>
  

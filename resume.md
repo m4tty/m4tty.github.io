@@ -35,9 +35,6 @@ Created a scalable and fault tolerant system for enriching messages beyond what 
 ### Cloud Latency, Variability, and SOA Analysis Team
 Led effort to operationalize cloud computing against the backdrop of a Service Oriented Architecture. Performed a measurement study to understand latency and latency variability impact in a large system of networked dependencies on virtualized cloud resources. Recommendations resulted in modifications to planned cloud deployment topology and reduced latency and latency variability.
 
-### Cloud Latency, Variability, and SOA Analysis Team
-Led effort to operationalize cloud computing against the backdrop of a Service Oriented Architecture.  Performed a measurement study to understand latency and latency variability impact in a large system of networked dependencies on virtualized cloud resources.  Recommendations resulted in modifications to planned cloud deployment topology and reduced latency and variability.
-
 ### Student Gamification System
 Designed and implemented extensible Gamification system to increase student engagement. System was created to allow for the experimentation and reconfiguration of new challenges through the use of A/B testing and measurement to ensure effectiveness in driving desired behavior and to prevent the dilution of rewards.
 

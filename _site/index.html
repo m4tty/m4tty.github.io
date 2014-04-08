@@ -162,6 +162,82 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2014/04/07/golang-series-1/">
+        Learning Go by Building a Time-Series System (Intro - Day 1)
+      </a>
+    </h1>
+
+    <span class="post-date">07 Apr 2014</span>
+
+    <h1>Day 1 - Learning by doing</h1>
+
+<h2>Let’s build something in Go together</h2>
+
+<p>I’ve been programming Go for a little while now, and have been plugging along, but I haven’t built anything truly useful or challenging.  So, in an effort to <a href="http://en.wikipedia.org/wiki/Experiential_learning">“learn by doing”</a>, I’ll be attempting to build something non-trivial and along the way I’ll share all of the gory details from soup to nuts.</p>
+
+<p>Instead of building yet another blog engine or a to-do list application I’ve decided to build a time-series data store, services, and graphing engine.  Much of what we build will be similar to functionality in -the oh so awesome- <a href="http://graphite.wikidot.com/">Graphite</a> (and <a href="https://github.com/etsy/statsd/">statsd</a>).  While I don’t think we’ll build <em>all</em> of the parts required, we will attempt to write the software ourselves in places where learning opportunity and low difficulty intersect.  We’ll leverage and collaborate with open source software when the task is too great or doesn’t contribute to learning Go.</p>
+
+<p>The high level plan will look like this: </p>
+
+<ul>
+<li>We&#39;ll start with some context (i.e. why measure all the things) about why a time-series system is cool to build.</li>
+<li>Then we&#39;ll do some design and architecture.</li>
+<li>Set up our programming environment and level set on Go.</li>
+<li>Start coding...</li>
+</ul>
+
+<div class="message">
+Along the way I'll take a number of tangents, where it is something I think is worth learning or explaining.  When I do so, I'll try to designate those sections differently.
+</div>
+
+<h3>The High Level Functional Requirements</h3>
+
+<p><strong>Store numeric time series data</strong></p>
+
+<ul>
+<li>UDP for high frequency, finely grained data points, and clients that need to fire and forget</li>
+<li>HTTP for aggregated data</li>
+<li>Low storage footprint</li>
+<li>High precision for more recent data, lower precision as data ages</li>
+</ul>
+
+<p><strong>Retrieve numeric time series data</strong></p>
+
+<ul>
+<li>HTTP</li>
+<li>Server side data functions support</li>
+</ul>
+
+<p><strong>Graphs</strong></p>
+
+<ul>
+<li>Simple, good looking, plotted graphs</li>
+<li>Doesn’t need to be interactive</li>
+</ul>
+
+<h3>Additionally, we want:</h3>
+
+<ul>
+<li>Testable software</li>
+<li>Decent test coverage</li>
+<li>Documentation</li>
+<li>Fun (if it isn’t fun to build it, we won’t)</li>
+<li>Learning (we’ll take some detours along the way when appropriate)</li>
+<li>A design/architecture that supports change in key areas</li>
+</ul>
+
+<h2>Following along at home</h2>
+
+<p>I’ll be using git / github to manage the changes over time.  I’ll be providing commit ids along the way for the folks that would like to follow along.</p>
+
+<h2>Summary</h2>
+
+<p>I&#39;m going to build a time-series system and while I do so I will write down all of the ugly details along the way.  You can follow along and we&#39;ll learn something together.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2014/04/06/golang-series-1/">
         Learning Go by Building a Time-Series System (Intro - Day 1)
       </a>
