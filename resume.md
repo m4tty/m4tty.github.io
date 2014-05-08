@@ -5,10 +5,10 @@ title: Resume
 
 ##Matthew Self
 
-#### 2158 Fox Fire St, Highlands Ranch, CO • 720.231.2305 • self.matt@gmail.com
+#### 2158 Fox Fire St, Highlands Ranch, CO • self.matt@gmail.com
 
 * [LinkedIn](http://www.linkedin.com/pub/matt-self/1/961/503)
-* [StackOverflow](http://careers.stackoverflow.com/cv/edit/176752)
+* [StackOverflow](http://stackoverflow.com/users/1442914/matt-self)
 
 
 ---
