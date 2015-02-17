@@ -20,7 +20,13 @@ title: Resume
 
 ##Experience
 
-##Chief Architect - Pearson - (1999 - Present)
+##Co-Founder and Chief Technologist - Crafted Education - (Nov 2014 - Present)
+
+Crafted Education is a project based consulting company with decades of experience creating impactful solutions in the education technology market. 
+
+We help organizations define and execute their education technology strategies by providing full stack planning, design, development, testing and delivery services. We believe success comes through educating people. We believe this is a noble cause.
+
+##Chief Architect - Pearson - (1999 - July 2014)
 
 ### Student Event Feed
 Designed and implemented a near real-time, fault tolerant, user event stream leveraging Node.js and MongoDB. System allowed for the efficient construction of web pages and REST endpoints for showing latest events in a student’s activity feed. Due to the high fanout nature of the event sources (i.e. many disparate domains publishing events), system achieved excellent performance and efficiency by selectively materializing each user’s feed. Workloads with a high query rate were materialized at event time, while user’s with a low query rate were materialized on-demand at query time.
