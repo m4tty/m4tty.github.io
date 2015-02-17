@@ -20,11 +20,9 @@ title: Resume
 
 ##Experience
 
-##Co-Founder and Chief Technologist - Crafted Education - (Nov 2014 - Present)
+##Co-Founder and Chief Technologist - [Crafted Education](http://crafted.education) - (Nov 2014 - Present)
 
-Crafted Education is a project based consulting company with decades of experience creating impactful solutions in the education technology market. 
-
-We help organizations define and execute their education technology strategies by providing full stack planning, design, development, testing and delivery services. We believe success comes through educating people. We believe this is a noble cause.
+Defining technology strategy and vision with a focus on software design, architecture, and product development.  Building systems that support change and provide business and technology flexibility.
 
 ##Chief Architect - Pearson - (1999 - July 2014)
 
