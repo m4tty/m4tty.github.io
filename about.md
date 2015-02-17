@@ -7,7 +7,7 @@ title: About
   Software Engineer and Architect. Builder. Maker. Learner.
 </p>
 
-* [Twitter](https://twitter.com/_m4tty)
+* [Twitter](https://twitter.com/selfdom)
 * [GitHub](https://github.com/m4tty)
 
 [Resume](../resume)
